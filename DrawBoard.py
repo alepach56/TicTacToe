@@ -14,6 +14,7 @@ def drawSquare():
     
     color = (250,250,250)
     pygame.draw.rect(surface, color, pygame.Rect(150,150,600,600))
+    
 
 
 
@@ -23,3 +24,6 @@ def drawGrid():
         for y in range(150, 750, blockSize):
             rect = pygame.Rect(x, y, blockSize, blockSize)
             pygame.draw.rect(surface, WHITE, rect, 10)
+
+    pygame.draw.rect(surface, (200,200,200), pygame.Rect(150, 150, 600, 600),  5)
+    
