@@ -1,5 +1,6 @@
 import pygame
 from DrawBoard import drawSquare, drawGrid
+from Pieces import click
 
 # Constants
 pygame.init()
@@ -13,8 +14,15 @@ while running:
         
         if event.type == pygame.QUIT:
             running = False
+        
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+            x = pos[0]
+            y = pos[1]
+            if (x > 150 and x < 750) and (y > 150 and y < 750):
+                click(x,y)
 
-        pygame.display.flip()
+        pygame.display.update()
 pygame.quit()
 
 
