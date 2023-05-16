@@ -1,4 +1,5 @@
 # TicTacToe
 
-# Test Run for Pygame and github linking
+Pygame implementation of TicTacToe
+
 
