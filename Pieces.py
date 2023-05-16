@@ -69,24 +69,25 @@ def checkWinner():
     global draw
 
     if(all([all(row) for row in board]) and winner is None):
-       # pygame.draw.line(surface, (20, 76, 20), (750, 150), (150, 750), 20)
         draw = True
 
     for row in range(0, 3):
         if((board[row][0] == board[row][1] == board[row][2]) and (board[row][0] is not None)):
             winner = board[row][0]
-            pygame.draw.line(surface, (250, 0, 0),
-                         (150, (row + 1) * 900 / 3 - 750),
-                         (650, (row + 1) *900 / 3 - 150 / 6),
-                         20)
+            pygame.draw.line(surface, (250, 0, 0), 
+                             (30 + (row + 1) * 200, 175),
+                             (30 + (row + 1) * 200, 725), 
+                            17)
             break
  
     # checking for winning columns
     for col in range(0, 3):
         if((board[0][col] == board[1][col] == board[2][col]) and (board[0][col] is not None)):
             winner = board[0][col]
-            pygame.draw.line(surface, (250, 0, 0), ((col + 1) * 900 / 3 - 900 / 6, 0),
-                         ((col + 1) * 900 / 3 - 900 / 6, 900), 20)
+            pygame.draw.line(surface, (250, 0, 0),
+                         (175, 30 + (col + 1) * 200),
+                         (725, 30 + (col + 1) * 200),
+                         17)
             break
  
     # check for diagonal winners
@@ -94,19 +95,28 @@ def checkWinner():
  
         # game won diagonally left to right
         winner = board[0][0]
-        pygame.draw.line(surface, (250, 70, 70), (150, 150), (750, 750), 20)
+        pygame.draw.line(surface, (250, 0, 0), (175, 175), (725, 725), 17)
  
     if (board[0][2] == board[1][1] == board[2][0]) and (board[0][2] is not None):
  
         # game won diagonally right to left
         winner = board[0][2]
-        pygame.draw.line(surface, (250, 70, 70), (750, 150), (150, 750), 20)
+        pygame.draw.line(surface, (250, 0, 0), (725, 175), (175, 715), 17)
  
     
         
 def message():
-    pygame.draw.line(surface, (20, 76, 20), (250, 150), (150, 750), 20)
+    message = ""
+    if winner:
+        if winner == "x":
+            message = "Winner is x!"
+        else:
+            message = "Winner is o!"
+    else:
+        message = "The game ends in a draw."
 
-def updateGame ():
-    if winner is None:
-        x=1
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render(message, True, (250,0,0), (0,0,0))
+    textRect = pygame.draw.rect(surface, (0,0,0), pygame.Rect(350,800,450,800))
+    surface.blit(text, textRect)
+    
